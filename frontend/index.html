@@ -1,0 +1,181 @@
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        padding: 20px;
+        font-family: sans-serif;
+        /* */
+    }
+    body {
+        background-color: #1a1a1a;
+        color: aliceblue
+    
+    }
+
+
+
+</style>
+<div>
+    <header>
+        <h1>
+            Soundterest
+        </h1>
+        <h2>
+            Wilson's sounds
+        </h2>
+    </header>
+    <section>
+        <p>
+            I miss how punishment kept me company
+        </p>
+        <div class="grid-container">
+            <div>
+                <img src="image.png" alt="default-image">
+                <div>
+                    <button>like</button>
+                    <button>play</button>
+                </div>
+            </div>
+            <div>
+                <img src="image.png" alt="default-image">
+                <div>
+                    <button>like</button>
+                    <button>play</button>
+                </div>
+            </div>
+            <div>
+                <img src="image.png" alt="default-image">
+                <div>
+                    <button>like</button>
+                    <button>play</button>
+                </div>
+            </div>
+            <div>
+                <img src="image.png" alt="default-image">
+                <div>
+                    <button>like</button>
+                    <button>play</button>
+                </div>
+            </div>
+            <div>
+                <img src="image.png" alt="default-image">
+                <div>
+                    <button>like</button>
+                    <button>play</button>
+                </div>
+            </div>
+            <div>
+                <img src="image.png" alt="default-image">
+                <div>
+                    <button>like</button>
+                    <button>play</button>
+                </div>
+            </div>
+            <div>
+                <img src="image.png" alt="default-image">
+                <div>
+                    <button>like</button>
+                    <button>play</button>
+                </div>
+            </div>
+            <div>
+                <img src="image.png" alt="default-image">
+                <div>
+                    <button>like</button>
+                    <button>play</button>
+                </div>
+            </div>
+            <div>
+                <img src="image.png" alt="default-image">
+                <div>
+                    <button>like</button>
+                    <button>play</button>
+                </div>
+            </div>
+            <div>
+                <img src="image.png" alt="default-image">
+                <div>
+                    <button>like</button>
+                    <button>play</button>
+                </div>
+            </div>
+            <div>
+                <img src="image.png" alt="default-image">
+                <div>
+                    <button>like</button>
+                    <button>play</button>
+                </div>
+            </div>
+            <div>
+                <img src="image.png" alt="default-image">
+                <div>
+                    <button>like</button>
+                    <button>play</button>
+                </div>
+            </div>
+            <div>
+                <img src="image.png" alt="default-image">
+                <div>
+                    <button>like</button>
+                    <button>play</button>
+                </div>
+            </div>
+            <div>
+                <img src="image.png" alt="default-image">
+                <div>
+                    <button>like</button>
+                    <button>play</button>
+                </div>
+            </div>
+            <div>
+                <img src="image.png" alt="default-image">
+                <div>
+                    <button>like</button>
+                    <button>play</button>
+                </div>
+            </div>
+            <div>
+                <img src="image.png" alt="default-image">
+                <div>
+                    <button>like</button>
+                    <button>play</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>
+           add a sound?
+        </p>
+        <button>
+            sure
+        </button>
+    </footer>
+</div>
+
+<script>
+    async function loadUserProfile(username){
+
+        const response = await fetch(`http://127.0.0.1:5000/api/user/${username}`);
+        const data = await response.json();
+        document.querySelector('p').textContent = data.user.bio;
+        document.querySelector('h2').textContent = data.user.username + "'s samples"
+
+        const grid = document.querySelector('.grid-container');
+        grid.innerHTML = '';
+
+        data.samples.forEach(sample => {
+            const sampleDiv = document.createElement('div');
+            sampleDiv.innerHTML = `
+            <img src="${sample.image_url || 'image.png'}" alt="${sample.name}">
+            <div>
+                <button>like</button>
+                <button>play</button>
+            </div>
+        `;
+        grid.appendChild(sampleDiv);
+        })
+    }
+    loadUserProfile('wilson');
+</script>
